@@ -1,0 +1,12 @@
+{
+    "python.pythonPath": "/usr/bin/python3",
+    "files.associations": {
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "iosfwd": "cpp"
+    },
+    "catalyst.default.language": "python",
+    "catalyst.default.template.python": "/home/firebird23/Desktop/Competitive/b.py",
+    "catalyst.lang.python.interpreter": "pypy3",
+    "C_Cpp.errorSquiggles": "Disabled"
+}

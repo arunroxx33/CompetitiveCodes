@@ -1,0 +1,44 @@
+
+from bisect import bisect_left as bl
+from bisect import bisect_right as br
+from heapq import heappush,heappop
+import math
+from collections import *
+from functools import reduce,cmp_to_key,lru_cache
+import io, os
+input = io.BytesIO(os.read(0,os.fstat(0).st_size)).readline
+# import sys
+# input = sys.stdin.readline
+ 
+M = mod = 10 ** 9 + 7
+def factors(n):return sorted(set(reduce(list.__add__, ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0))))
+def inv_mod(n):return pow(n, mod - 2, mod)
+ 
+def li():return [int(i) for i in input().rstrip().split()]
+def st():return str(input().rstrip())[2:-1]
+def val():return int(input().rstrip())
+def li2():return [str(i)[2:-1] for i in input().rstrip().split()]
+def li3():return [int(i) for i in st()]
+
+
+N = 10 ** 6 + 10
+
+
+facts = [1]
+for i in range(1, N):
+    facts.append(facts[-1] * i % mod)
+
+inversemods = [0 for i in range(N)]
+inversemods[-1] = inv_mod(facts[-1]) % mod
+for i in range(N - 2, -1, -1):
+    inversemods[i] = inversemods[i + 1] * (i + 1) % mod
+
+
+def ncr(n, r):
+    if n < r:return 0
+    return facts[n] * inversemods[n - r] * inversemods[r] % mod
+
+
+ans = 0
+for i in range(15, 0, -1):ans += ncr(60, i)
+print(ans)
